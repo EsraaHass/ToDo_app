@@ -11,6 +11,17 @@ class MyTheme {
 
   static final lightTheme = ThemeData(
     primaryColor: lightPrimary,
-    scaffoldBackgroundColor: LightscaffoldBackGroundColor,
-  );
+      scaffoldBackgroundColor: LightscaffoldBackGroundColor,
+      bottomNavigationBarTheme: BottomNavigationBarThemeData(
+        selectedIconTheme: IconThemeData(size: 35),
+        unselectedIconTheme: IconThemeData(size: 35),
+      ),
+      textTheme: TextTheme(
+        titleMedium: TextStyle(
+            color: lightPrimary, fontSize: 20, fontWeight: FontWeight.bold),
+        bodySmall: TextStyle(
+          color: Colors.black,
+          fontSize: 16,
+        ),
+      ));
 }
