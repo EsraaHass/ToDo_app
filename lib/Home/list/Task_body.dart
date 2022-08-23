@@ -1,8 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:todo/database/my_database.dart';
+import 'package:todo/database/task.dart';
+import 'package:todo/dialogDetails.dart';
 import 'package:todo/my_theme.dart';
 
 class Task_Body extends StatelessWidget {
+  Task task;
+
+  Task_Body(this.task);
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -13,7 +20,18 @@ class Task_Body extends StatelessWidget {
           children: [
             // A SlidableAction can have an icon and/or a label.
             SlidableAction(
-              onPressed: (_) {},
+              onPressed: (_) {
+                MyDataBase.deleteTask(task).then((value) {
+                  showMassege(context, 'Task Deleted Successfully',
+                      positiveActionName: 'OK', isCancelable: false);
+                }).onError((error, stackTrace) {
+                  showMassege(context, 'SomeThing went wrong, try again later',
+                      positiveActionName: 'Yes', isCancelable: false);
+                }).timeout(Duration(seconds: 5), onTimeout: () {
+                  showMassege(context, 'Task Deleted Locally',
+                      isCancelable: false);
+                });
+              },
               backgroundColor: MyTheme.red,
               foregroundColor: Colors.white,
               icon: Icons.delete,
@@ -45,25 +63,29 @@ class Task_Body extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Play Basketball !',
+                      task.title ?? '',
                       style: Theme.of(context).textTheme.titleMedium,
                     ),
                     SizedBox(
                       height: 10,
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Icon(Icons.access_time),
-                        SizedBox(
-                          width: 5,
-                        ),
-                        Text(
-                          '8:30 am',
-                          style: Theme.of(context).textTheme.bodySmall,
-                        ),
-                      ],
-                    )
+                    Text(
+                      task.description ?? '',
+                      style: Theme.of(context).textTheme.bodySmall,
+                    ),
+                    // Row(
+                    //   mainAxisAlignment: MainAxisAlignment.start,
+                    //   children: [
+                    //     Icon(Icons.access_time),
+                    //     SizedBox(
+                    //       width: 5,
+                    //     ),
+                    //     Text(
+                    //       '8:30 am',
+                    //       style: Theme.of(context).textTheme.bodySmall,
+                    //     ),
+                    //   ],
+                    // )
                   ],
                 ),
               ),
