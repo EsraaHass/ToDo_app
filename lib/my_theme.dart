@@ -19,6 +19,8 @@ class MyTheme {
       textTheme: TextTheme(
         titleMedium: TextStyle(
             color: lightPrimary, fontSize: 20, fontWeight: FontWeight.bold),
+        titleSmall: TextStyle(
+            color: lightPrimary, fontSize: 18, fontWeight: FontWeight.bold),
         bodySmall: TextStyle(
           color: Colors.black,
           fontSize: 16,
