@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:todo/database/task.dart';
-import 'package:todo/only_date.dart';
+import 'package:todo/database_layer/task.dart';
+import 'package:todo/Presentation_layer/only_date.dart';
 
 class MyDataBase {
   static CollectionReference<Task> getTaskesCollection() {

@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
-import 'package:todo/database/my_database.dart';
-import 'package:todo/database/task.dart';
-import 'package:todo/dialogDetails.dart';
-import 'package:todo/my_theme.dart';
+import 'package:provider/provider.dart';
+import 'package:todo/Presentation_layer/dialogDetails.dart';
+import 'package:todo/Presentation_layer/my_theme.dart';
+import 'package:todo/database_layer/my_database.dart';
+import 'package:todo/database_layer/task.dart';
+import 'package:todo/stateManageMent_layer/provider.dart';
 
 class Task_Body extends StatelessWidget {
   Task task;
@@ -12,8 +15,9 @@ class Task_Body extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var provider = Provider.of<AppProvider>(context);
     return Container(
-      margin: EdgeInsets.all(8),
+      margin: EdgeInsets.all(10),
       child: Slidable(
         startActionPane: ActionPane(
           motion: DrawerMotion(),
@@ -22,20 +26,24 @@ class Task_Body extends StatelessWidget {
             SlidableAction(
               onPressed: (_) {
                 MyDataBase.deleteTask(task).then((value) {
-                  showMassege(context, 'Task Deleted Successfully',
-                      positiveActionName: 'OK', isCancelable: false);
+                  showMassege(
+                      context, AppLocalizations.of(context)!.successDelete,
+                      positiveActionName: AppLocalizations.of(context)!.yes,
+                      isCancelable: false);
                 }).onError((error, stackTrace) {
-                  showMassege(context, 'SomeThing went wrong, try again later',
-                      positiveActionName: 'Yes', isCancelable: false);
+                  showMassege(context, AppLocalizations.of(context)!.errorLoad,
+                      positiveActionName: AppLocalizations.of(context)!.yes,
+                      isCancelable: false);
                 }).timeout(Duration(seconds: 5), onTimeout: () {
-                  showMassege(context, 'Task Deleted Locally',
+                  showMassege(
+                      context, AppLocalizations.of(context)!.deleteLocally,
                       isCancelable: false);
                 });
               },
               backgroundColor: MyTheme.red,
               foregroundColor: Colors.white,
               icon: Icons.delete,
-              label: 'Delete',
+              label: AppLocalizations.of(context)!.delete,
               borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(15),
                   bottomLeft: Radius.circular(15)),
@@ -45,11 +53,12 @@ class Task_Body extends StatelessWidget {
         child: Container(
           padding: EdgeInsets.all(13),
           decoration: BoxDecoration(
-              color: Colors.white, borderRadius: BorderRadius.circular(15)),
+              color: provider.isDark() ? Colors.black : Colors.white,
+              borderRadius: BorderRadius.circular(15)),
           child: Row(
             children: [
               Container(
-                width: 8,
+                width: 4,
                 height: 80,
                 decoration: BoxDecoration(
                     color: MyTheme.lightPrimary,
@@ -73,19 +82,6 @@ class Task_Body extends StatelessWidget {
                       task.description ?? '',
                       style: Theme.of(context).textTheme.bodySmall,
                     ),
-                    // Row(
-                    //   mainAxisAlignment: MainAxisAlignment.start,
-                    //   children: [
-                    //     Icon(Icons.access_time),
-                    //     SizedBox(
-                    //       width: 5,
-                    //     ),
-                    //     Text(
-                    //       '8:30 am',
-                    //       style: Theme.of(context).textTheme.bodySmall,
-                    //     ),
-                    //   ],
-                    // )
                   ],
                 ),
               ),
@@ -93,7 +89,7 @@ class Task_Body extends StatelessWidget {
                   decoration: BoxDecoration(
                       color: MyTheme.lightPrimary,
                       borderRadius: BorderRadius.circular(15)),
-                  padding: EdgeInsets.symmetric(vertical: 8, horizontal: 24),
+                  padding: EdgeInsets.symmetric(vertical: 5, horizontal: 20),
                   child: Icon(
                     Icons.check,
                     color: Colors.white,

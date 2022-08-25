@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:todo/Home/list/add_task_bottom-sheet.dart';
-import 'package:todo/Home/list/list_tab.dart';
-import 'package:todo/Home/settings/settings_tab.dart';
+import 'package:provider/provider.dart';
+import 'package:todo/Presentation_layer/list/add_task_bottom-sheet.dart';
+import 'package:todo/Presentation_layer/list/list_tab.dart';
+import 'package:todo/Presentation_layer/settings/settings_tab.dart';
+import 'package:todo/stateManageMent_layer/provider.dart';
 
 class HomeScreen extends StatefulWidget {
   static const String routeName = 'HomeScreen';
@@ -16,9 +18,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('To Do List'),
-      ),
+      resizeToAvoidBottomInset: true,
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: FloatingActionButton(
         onPressed: () {
