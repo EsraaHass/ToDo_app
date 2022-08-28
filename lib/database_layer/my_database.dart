@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:todo/database_layer/task.dart';
 import 'package:todo/Presentation_layer/only_date.dart';
+import 'package:todo/database_layer/task.dart';
 
 class MyDataBase {
   static CollectionReference<Task> getTaskesCollection() {
@@ -41,7 +41,36 @@ class MyDataBase {
     var snapshot = await getTaskesCollection().doc(task.id);
     return snapshot.delete();
   }
+
+  static Future<void> udateDeleteTask(Task task) {
+    CollectionReference isDoneupdate = getTaskesCollection();
+    return isDoneupdate.doc(task.id).update({
+      'isDone': task.isDone! ? false : true,
+    });
+  }
+
+  static Future<void> updateTaskDeteails(Task task) {
+    CollectionReference todoUpdate = getTaskesCollection();
+    return todoUpdate.doc(task.id).set(task);
+  }
+
+  static Future<void> editTaskDetails(Task task) async {
+    CollectionReference todoRef = getTaskesCollection();
+    return await todoRef.doc(task.id).update({
+      'title': task.title,
+      'description': task.description,
+      'dateTime': dateOnly(task.dataTime!).millisecondsSinceEpoch,
+    });
+  }
 }
+/*
+.update({
+      'title': task.title,
+      'description': task.description,
+      'dataTime': task.dataTime!.millisecondsSinceEpoch,
+    });
+ */
+
 /*
 // this code use to get data from firestore once without any updates for delete or ...
 so we receive this code by listenForTaskRealDataUpdates because this listen for any updates

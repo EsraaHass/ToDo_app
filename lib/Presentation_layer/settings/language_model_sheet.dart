@@ -17,7 +17,7 @@ class _ShowModelSheetLanguageState extends State<ShowModelSheetLanguage> {
       color: provider.isDark()
           ? MyTheme.darkscaffoldBackGroundColor
           : Colors.white,
-      padding: EdgeInsets.all(20),
+      padding: const EdgeInsets.all(20),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -44,24 +44,26 @@ class _ShowModelSheetLanguageState extends State<ShowModelSheetLanguage> {
   }
 
   Widget getSelectedLanguage(String text) {
-    var provider = Provider.of<AppProvider>(context);
     return Container(
-      padding: EdgeInsets.all(10),
-      margin: EdgeInsets.only(bottom: 30),
+      padding: const EdgeInsets.all(10),
+      margin: const EdgeInsets.only(bottom: 30),
       decoration: BoxDecoration(
-          color: provider.isDark() ? Colors.black : Colors.white,
+          color: const Color(0xFFBFD1E0),
           border: Border.all(color: MyTheme.lightPrimary)),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(
             text,
-            style: Theme.of(context).textTheme.titleSmall,
+            style: Theme.of(context)
+                .textTheme
+                .titleSmall!
+                .copyWith(color: Colors.black),
           ),
-          Icon(
+          const Icon(
             Icons.check,
             size: 25,
-            color: MyTheme.lightPrimary,
+            color: Colors.black,
           )
         ],
       ),
@@ -71,11 +73,10 @@ class _ShowModelSheetLanguageState extends State<ShowModelSheetLanguage> {
   Widget getUnSelectedLanguage(String text) {
     var provider = Provider.of<AppProvider>(context);
     return Container(
-      padding: EdgeInsets.all(10),
-      margin: EdgeInsets.only(bottom: 30),
+      padding: const EdgeInsets.all(10),
+      margin: const EdgeInsets.only(bottom: 30),
       decoration: BoxDecoration(
-          color: provider.isDark() ? Colors.black : Colors.white,
-          border: Border.all(color: MyTheme.lightPrimary)),
+          color: Colors.white, border: Border.all(color: MyTheme.lightPrimary)),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -83,7 +84,7 @@ class _ShowModelSheetLanguageState extends State<ShowModelSheetLanguage> {
             text,
             style: Theme.of(context).textTheme.titleSmall,
           ),
-          Icon(
+          const Icon(
             Icons.check,
             size: 25,
             color: MyTheme.lightPrimary,
