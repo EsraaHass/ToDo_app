@@ -42,6 +42,7 @@ class _List_tabState extends State<List_tab> {
             child: Column(
               children: [
                 CalendarTimeline(
+                  locale: 'en',
                   showYears: true,
                   initialDate: selectedDate,
                   firstDate: DateTime.now().subtract(Duration(days: 365)),

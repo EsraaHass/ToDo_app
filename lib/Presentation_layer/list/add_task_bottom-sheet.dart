@@ -32,25 +32,24 @@ class _AddTaskBottomSheetState extends State<AddTaskBottomSheet> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
+              Text(
+                AppLocalizations.of(context)!.addTask,
+                textAlign: TextAlign.center,
+                style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                      color: provider.isDark()
+                          ? Colors.white
+                          : MyTheme.lightPrimary,
+                    ),
+              ),
+              const SizedBox(
+                height: 30,
+              ),
               Expanded(
                 child: ListView(
                   children: [
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
-                        Text(
-                          AppLocalizations.of(context)!.addTask,
-                          textAlign: TextAlign.center,
-                          style:
-                              Theme.of(context).textTheme.titleMedium?.copyWith(
-                                    color: provider.isDark()
-                                        ? Colors.white
-                                        : MyTheme.lightPrimary,
-                                  ),
-                        ),
-                        const SizedBox(
-                          height: 30,
-                        ),
                         BuildTextFormField(
                             titlecontroller,
                             AppLocalizations.of(context)!.validateTitle,
