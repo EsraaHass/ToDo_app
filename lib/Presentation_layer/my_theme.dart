@@ -13,12 +13,12 @@ class MyTheme {
   static final lightTheme = ThemeData(
       primaryColor: lightPrimary,
       scaffoldBackgroundColor: LightscaffoldBackGroundColor,
-      bottomNavigationBarTheme: BottomNavigationBarThemeData(
+      bottomNavigationBarTheme: const BottomNavigationBarThemeData(
         backgroundColor: Colors.white,
         selectedIconTheme: IconThemeData(size: 35),
         unselectedIconTheme: IconThemeData(size: 35),
       ),
-      textTheme: TextTheme(
+      textTheme: const TextTheme(
         titleMedium: TextStyle(
             color: lightPrimary, fontSize: 20, fontWeight: FontWeight.bold),
         titleSmall: TextStyle(
@@ -32,12 +32,12 @@ class MyTheme {
   static final darkTheme = ThemeData(
       primaryColor: lightPrimary,
       scaffoldBackgroundColor: darkscaffoldBackGroundColor,
-      bottomNavigationBarTheme: BottomNavigationBarThemeData(
+      bottomNavigationBarTheme: const BottomNavigationBarThemeData(
         // backgroundColor: darkscaffoldBackGroundColor,
         selectedIconTheme: IconThemeData(size: 35),
         unselectedIconTheme: IconThemeData(size: 35),
       ),
-      textTheme: TextTheme(
+      textTheme: const TextTheme(
         titleMedium: TextStyle(
             color: lightPrimary, fontSize: 20, fontWeight: FontWeight.bold),
         titleSmall: TextStyle(
