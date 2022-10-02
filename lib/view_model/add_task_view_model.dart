@@ -16,7 +16,7 @@ class AddTaskViewModel extends BaseViewModel<AddTaskNavigator> {
   void addTask(String title, String desc) {
     DateTime selectedDate = DateTime.now();
     Task task = Task(
-        id: SharedData.myUser?.id,
+        id: SharedData.myUser!.id,
         title: title,
         description: desc,
         dataTime: dateOnly(selectedDate),

@@ -1,12 +1,15 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:todo/domain_layer/provider.dart';
+import 'package:todo/model/my_user.dart';
 import 'package:todo/view/home_screen.dart';
 import 'package:todo/view/register/register.dart';
 import 'package:todo/view/shared/my_theme.dart';
+import 'package:todo/view/shared/shared_data.dart';
 
 import 'firebase_options.dart';
 
@@ -26,9 +29,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     provider = Provider.of(context);
     getValuesFromShared();
+    final fireUser =  FirebaseAuth.instance.currentUser;
+    SharedData.myUser =MyUser(id: fireUser?.uid,name: fireUser?.displayName);
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: Register.routeName,
+      initialRoute:SharedData.myUser != null ? HomeScreen.routeName: Register.routeName,
       routes: {
         HomeScreen.routeName: (_) => HomeScreen(),
         Register.routeName: (_) => Register(),
