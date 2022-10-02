@@ -22,7 +22,8 @@ class AddTaskRepository implements Repository {
     var taskesCollection = getTaskesCollection();
     var taskDocs =
         taskesCollection.doc(); // create new document with auto id in firebase
-    task.id = taskDocs.id;
+    //////////////////////////////////////
+   // task.id = taskDocs.id;
     return taskDocs.set(task);
   }
 
@@ -65,11 +66,15 @@ class AddTaskRepository implements Repository {
   Stream<QuerySnapshot<Task>> listenForTaskRealDataUpdates(
       DateTime selectedDate) {
     printData(selectedDate);
-    return getTaskesCollection()
-        .where('dataTime',
-            isEqualTo: dateOnly(selectedDate).millisecondsSinceEpoch)
-        .where('id', isEqualTo: SharedData.myUser!.id)
-        .snapshots();
+    try {
+      return getTaskesCollection()
+          .where('dataTime',isEqualTo: dateOnly(selectedDate).millisecondsSinceEpoch)
+          .where('id', isEqualTo: SharedData.myUser!.id)
+          .snapshots();
+    } on Exception catch (e) {
+      print("GMgm: $e");
+      rethrow;
+    }
   }
 
   Future<void> printData(DateTime selectedDate) async {
