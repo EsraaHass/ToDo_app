@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
-import 'package:todo/Presentation_layer/my_theme.dart';
-import 'package:todo/Presentation_layer/settings/language_model_sheet.dart';
-import 'package:todo/Presentation_layer/settings/theme_model_sheet.dart';
-import 'package:todo/stateManageMent_layer/provider.dart';
+import 'package:todo/domain_layer/provider.dart';
+import 'package:todo/view/settings/language_model_sheet.dart';
+import 'package:todo/view/settings/theme_model_sheet.dart';
+import 'package:todo/view/shared/my_theme.dart';
 
 class Settings_tab extends StatefulWidget {
   @override
@@ -19,7 +19,7 @@ class _Settings_tabState extends State<Settings_tab> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Container(
-          padding: EdgeInsets.symmetric(vertical: 50, horizontal: 30),
+          padding: const EdgeInsets.symmetric(vertical: 50, horizontal: 30),
           decoration: const BoxDecoration(
               color: MyTheme.lightPrimary,
               borderRadius: BorderRadius.only(
@@ -36,7 +36,7 @@ class _Settings_tabState extends State<Settings_tab> {
           ),
         ),
         Container(
-          padding: EdgeInsets.symmetric(vertical: 30, horizontal: 20),
+          padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 20),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -52,8 +52,9 @@ class _Settings_tabState extends State<Settings_tab> {
                   showButtonSheetModeLanguage();
                 },
                 child: Container(
-                  padding: EdgeInsets.all(10),
-                  margin: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                  padding: const EdgeInsets.all(10),
+                  margin:
+                      const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
                   decoration: BoxDecoration(
                       color: provider.isDark() ? Colors.black : Colors.white,
                       border: Border.all(color: MyTheme.lightPrimary)),
@@ -68,7 +69,7 @@ class _Settings_tabState extends State<Settings_tab> {
                             color: MyTheme.lightPrimary,
                             fontWeight: FontWeight.bold),
                       ),
-                      Icon(
+                      const Icon(
                         Icons.arrow_drop_down,
                         size: 25,
                         color: MyTheme.lightPrimary,
@@ -77,7 +78,7 @@ class _Settings_tabState extends State<Settings_tab> {
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               Text(
@@ -92,8 +93,9 @@ class _Settings_tabState extends State<Settings_tab> {
                   showButtonSheetModeTheme();
                 },
                 child: Container(
-                  padding: EdgeInsets.all(10),
-                  margin: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                  padding: const EdgeInsets.all(10),
+                  margin:
+                      const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
                   decoration: BoxDecoration(
                       color: provider.isDark() ? Colors.black : Colors.white,
                       border: Border.all(color: MyTheme.lightPrimary)),
@@ -108,7 +110,7 @@ class _Settings_tabState extends State<Settings_tab> {
                             color: MyTheme.lightPrimary,
                             fontWeight: FontWeight.bold),
                       ),
-                      Icon(
+                      const Icon(
                         Icons.arrow_drop_down,
                         size: 25,
                         color: MyTheme.lightPrimary,

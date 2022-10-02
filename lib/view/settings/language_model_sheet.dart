@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
-import 'package:todo/Presentation_layer/my_theme.dart';
-import 'package:todo/stateManageMent_layer/provider.dart';
+import 'package:todo/view/shared/my_theme.dart';
+
+import '../../domain_layer/provider.dart';
 
 class ShowModelSheetLanguage extends StatefulWidget {
   @override
@@ -21,7 +22,6 @@ class _ShowModelSheetLanguageState extends State<ShowModelSheetLanguage> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          /////////AppLocalizations.of(context)!.english
           InkWell(
             onTap: () {
               provider.changeLang('en');

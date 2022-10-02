@@ -18,17 +18,18 @@ class MyTheme {
         selectedIconTheme: IconThemeData(size: 35),
         unselectedIconTheme: IconThemeData(size: 35),
       ),
-      textTheme: const TextTheme(
-        titleMedium: TextStyle(
-            color: lightPrimary, fontSize: 20, fontWeight: FontWeight.bold),
-        titleSmall: TextStyle(
-            color: lightPrimary, fontSize: 18, fontWeight: FontWeight.bold),
-        bodySmall: TextStyle(
-          color: Colors.black,
-          fontWeight: FontWeight.bold,
-          fontSize: 16,
-        ),
-      ));
+    textTheme: const TextTheme(
+      titleMedium: TextStyle(
+          color: lightPrimary, fontSize: 20, fontWeight: FontWeight.bold),
+      titleSmall: TextStyle(
+          color: lightPrimary, fontSize: 18, fontWeight: FontWeight.bold),
+      bodySmall: TextStyle(
+        color: Colors.black,
+        fontWeight: FontWeight.bold,
+        fontSize: 16,
+      ),
+    ),
+  );
   static final darkTheme = ThemeData(
       primaryColor: lightPrimary,
       scaffoldBackgroundColor: darkscaffoldBackGroundColor,
