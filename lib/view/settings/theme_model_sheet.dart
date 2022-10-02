@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
-import 'package:todo/Presentation_layer/my_theme.dart';
-import 'package:todo/stateManageMent_layer/provider.dart';
+import 'package:todo/domain_layer/provider.dart';
+import 'package:todo/view/shared/my_theme.dart';
 
 class ShowModelSheetTheme extends StatefulWidget {
   @override
@@ -19,7 +19,7 @@ class _ShowModelSheetThemeState extends State<ShowModelSheetTheme> {
       color: provider.isDark()
           ? MyTheme.darkscaffoldBackGroundColor
           : Colors.white,
-      padding: EdgeInsets.all(20),
+      padding: const EdgeInsets.all(20),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -45,10 +45,10 @@ class _ShowModelSheetThemeState extends State<ShowModelSheetTheme> {
 
   Widget getSelectedTheme(String text) {
     return Container(
-      padding: EdgeInsets.all(10),
-      margin: EdgeInsets.only(bottom: 30),
+      padding: const EdgeInsets.all(10),
+      margin: const EdgeInsets.only(bottom: 30),
       decoration: BoxDecoration(
-          color: Color(0xFFBFD1E0),
+          color: const Color(0xFFBFD1E0),
           border: Border.all(color: MyTheme.lightPrimary)),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -60,7 +60,7 @@ class _ShowModelSheetThemeState extends State<ShowModelSheetTheme> {
                 .titleSmall
                 ?.copyWith(color: Colors.black),
           ),
-          Icon(
+          const Icon(
             Icons.check,
             size: 25,
             color: Colors.black,
@@ -72,8 +72,8 @@ class _ShowModelSheetThemeState extends State<ShowModelSheetTheme> {
 
   Widget getUnSelectedTheme(String text) {
     return Container(
-      padding: EdgeInsets.all(10),
-      margin: EdgeInsets.only(bottom: 30),
+      padding: const EdgeInsets.all(10),
+      margin: const EdgeInsets.only(bottom: 30),
       decoration: BoxDecoration(
           color: Colors.white, border: Border.all(color: MyTheme.lightPrimary)),
       child: Row(
@@ -83,7 +83,7 @@ class _ShowModelSheetThemeState extends State<ShowModelSheetTheme> {
             text,
             style: Theme.of(context).textTheme.titleSmall,
           ),
-          Icon(
+          const Icon(
             Icons.check,
             size: 25,
             color: MyTheme.lightPrimary,

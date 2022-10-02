@@ -3,11 +3,11 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
-import 'package:todo/Presentation_layer/list/Task_body.dart';
-import 'package:todo/Presentation_layer/my_theme.dart';
-import 'package:todo/database_layer/my_database.dart';
-import 'package:todo/database_layer/task.dart';
-import 'package:todo/stateManageMent_layer/provider.dart';
+import 'package:todo/domain_layer/provider.dart';
+import 'package:todo/model/task.dart';
+import 'package:todo/repository/repository_impl.dart';
+import 'package:todo/view/list/Task_body.dart';
+import 'package:todo/view/shared/my_theme.dart';
 
 class List_tab extends StatefulWidget {
   @override
@@ -16,6 +16,7 @@ class List_tab extends StatefulWidget {
 
 class _List_tabState extends State<List_tab> {
   DateTime selectedDate = DateTime.now();
+  AddTaskRepository addTaskRepository = AddTaskRepository();
 
   @override
   Widget build(BuildContext context) {
@@ -69,9 +70,11 @@ class _List_tabState extends State<List_tab> {
                 ),
                 Expanded(
                     child: StreamBuilder<QuerySnapshot<Task>>(
-                  stream: MyDataBase.listenForTaskRealDataUpdates(selectedDate),
+                  stream: addTaskRepository
+                      .listenForTaskRealDataUpdates(selectedDate),
                   builder: (buildContext, snapshot) {
                     if (snapshot.hasError) {
+                      print("error = ${snapshot.error.toString()}");
                       // execute if has errors
                       return Text(AppLocalizations.of(context)!.errorLoad);
                     } else if (snapshot.connectionState ==
@@ -87,7 +90,7 @@ class _List_tabState extends State<List_tab> {
                         .toList();
                     return ListView.builder(
                       itemBuilder: (context, index) {
-                        return Task_Body(data[index]);
+                        return Task_Body(data![index]);
                       },
                       itemCount: data!.length,
                     );

@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:todo/Presentation_layer/list/add_task_bottom-sheet.dart';
-import 'package:todo/Presentation_layer/list/list_tab.dart';
-import 'package:todo/Presentation_layer/settings/settings_tab.dart';
-import 'package:todo/stateManageMent_layer/provider.dart';
+import 'package:todo/view/list/add_task_bottom-sheet.dart';
+import 'package:todo/view/list/list_tab.dart';
+import 'package:todo/view/settings/settings_tab.dart';
 
 class HomeScreen extends StatefulWidget {
   static const String routeName = 'HomeScreen';
@@ -24,13 +22,13 @@ class _HomeScreenState extends State<HomeScreen> {
         onPressed: () {
           showAddTaskBottomSheet();
         },
-        child: Icon(Icons.add),
-        shape: StadiumBorder(
-          side: BorderSide(color: Colors.white, width: 3),
+        child: const Icon(Icons.add),
+        shape: const StadiumBorder(
+          side: const BorderSide(color: Colors.white, width: 3),
         ),
       ),
       bottomNavigationBar: BottomAppBar(
-        shape: CircularNotchedRectangle(),
+        shape: const CircularNotchedRectangle(),
         notchMargin: 8,
         child: BottomNavigationBar(
           backgroundColor: Colors.transparent,
@@ -40,7 +38,7 @@ class _HomeScreenState extends State<HomeScreen> {
             selectedIndex = index;
             setState(() {});
           },
-          items: [
+          items: const [
             BottomNavigationBarItem(
               icon: Icon(Icons.list),
               label: '',

@@ -2,15 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:provider/provider.dart';
-import 'package:todo/Presentation_layer/dialogDetails.dart';
-import 'package:todo/Presentation_layer/list/edit_task.dart';
-import 'package:todo/Presentation_layer/my_theme.dart';
-import 'package:todo/database_layer/my_database.dart';
-import 'package:todo/database_layer/task.dart';
-import 'package:todo/stateManageMent_layer/provider.dart';
+import 'package:todo/domain_layer/provider.dart';
+import 'package:todo/model/task.dart';
+import 'package:todo/repository/repository_impl.dart';
+import 'package:todo/view/list/edit_task.dart';
+import 'package:todo/view/shared/dialogDetails.dart';
+import 'package:todo/view/shared/my_theme.dart';
 
 class Task_Body extends StatelessWidget {
   Task task;
+  AddTaskRepository addTaskRepository = AddTaskRepository();
 
   Task_Body(this.task);
 
@@ -33,10 +34,9 @@ class Task_Body extends StatelessWidget {
           startActionPane: ActionPane(
             motion: const DrawerMotion(),
             children: [
-              // A SlidableAction can have an icon and/or a label.
               SlidableAction(
                 onPressed: (_) {
-                  MyDataBase.deleteTask(task).then((value) {
+                  addTaskRepository.deleteTask(task).then((value) {
                     showMassege(
                         context, AppLocalizations.of(context)!.successDelete,
                         positiveActionName: AppLocalizations.of(context)!.yes,
@@ -109,7 +109,7 @@ class Task_Body extends StatelessWidget {
                 ),
                 InkWell(
                   onTap: () {
-                    MyDataBase.udateDeleteTask(task);
+                    addTaskRepository.udateDeleteTask(task);
                   },
                   child: task.isDone!
                       ? Text(
