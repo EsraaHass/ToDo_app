@@ -11,7 +11,7 @@ class AddTaskRepository implements Repository {
     return FirebaseFirestore.instance
         .collection(Task.collectionName)
         .withConverter<Task>(fromFirestore: (snapshot, options) {
-      return Task.fromFireStore(snapshot.data()!);
+      return Task.fromFireStore(snapshot.data()!,snapshot.id);
     }, toFirestore: (task, options) {
       return task.toFireStore();
     });
@@ -23,7 +23,7 @@ class AddTaskRepository implements Repository {
     var taskDocs =
         taskesCollection.doc(); // create new document with auto id in firebase
     //////////////////////////////////////
-   // task.id = taskDocs.id;
+    task.id = taskDocs.id;
     return taskDocs.set(task);
   }
 
@@ -69,7 +69,7 @@ class AddTaskRepository implements Repository {
     try {
       return getTaskesCollection()
           .where('dataTime',isEqualTo: dateOnly(selectedDate).millisecondsSinceEpoch)
-          .where('id', isEqualTo: SharedData.myUser!.id)
+          .where('userId', isEqualTo: SharedData.myUser!.id)
           .snapshots();
     } on Exception catch (e) {
       print("GMgm: $e");
