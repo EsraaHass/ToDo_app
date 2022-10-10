@@ -94,7 +94,7 @@ class _EditTaskState extends State<EditTask> {
                       // controller: titlecontroller,
                       initialValue: widget.task.title,
                       onChanged: (String? value) {
-                        widget.task.title = value;
+                        widget.task.title = value ?? "";
                       },
                       style: Theme.of(context).textTheme.titleMedium!.copyWith(
                           color: provider.isDark()
@@ -125,7 +125,7 @@ class _EditTaskState extends State<EditTask> {
                     TextFormField(
                       initialValue: widget.task.description,
                       onChanged: (String? value) {
-                        widget.task.description = value;
+                        widget.task.description = value ?? "";
                       },
                       style: Theme.of(context).textTheme.titleMedium!.copyWith(
                           color: provider.isDark()

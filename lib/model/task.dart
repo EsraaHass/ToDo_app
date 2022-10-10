@@ -1,26 +1,30 @@
 class Task {
   static const String collectionName = 'task';
-  String? id;
+  String id;
 
-  String? title;
+  String userId;
 
-  String? description;
+  String title;
 
-  DateTime? dataTime;
+  String description;
 
-  bool? isDone;
+  DateTime dataTime;
+
+  bool isDone;
 
   Task({
-    this.id,
-    this.title,
-    this.description,
-    this.dataTime,
-    this.isDone,
+    required this.id,
+    required this.userId,
+    required this.title,
+    required this.description,
+    required this.dataTime,
+    required this.isDone,
   });
 
-  Task.fromFireStore(Map<String, dynamic> data)
+  Task.fromFireStore(Map<String, dynamic> data, String id)
       : this(
           id: data['id'],
+          userId: data['id'],
           title: data['title'],
           description: data['description'],
           dataTime: DateTime.fromMillisecondsSinceEpoch(data['dataTime']),
@@ -30,9 +34,10 @@ class Task {
   Map<String, dynamic> toFireStore() {
     return {
       'id': id,
+      'userId':userId,
       'title': title,
       'description': description,
-      'dataTime': dataTime?.millisecondsSinceEpoch,
+      'dataTime': dataTime.millisecondsSinceEpoch,
       'isDone': isDone,
     };
   }
